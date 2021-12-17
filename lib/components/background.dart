@@ -2,10 +2,10 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:motos/motos_game.dart';
+import 'package:motos/game/my_game.dart';
 
 class Background extends Component {
-  final MotosGame game;
+  final MyGame game;
 
   static const _starsCount = 100;
 
@@ -45,14 +45,6 @@ class Background extends Component {
     generateStars();
   }
   */
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    //!!!
-    //print('update');
-  }
 
   generateStars() {
     var w = game.screenSize!.storage[0];

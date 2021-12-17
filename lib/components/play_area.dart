@@ -2,13 +2,14 @@ import 'dart:collection';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:motos/models/cell.dart';
 import 'package:motos/models/cell_type.dart';
 
-import '../motos_game.dart';
+import '../game/my_game.dart';
 
 class PlayArea extends Component {
-  final MotosGame game;
+  final MyGame game;
 
   int cols = 15;
   int rows = 15;
@@ -35,7 +36,7 @@ class PlayArea extends Component {
     "2121212121212",
   ];
 
-  Vector2? canvasSize;
+  Vector2? gameSize;
 
   PlayArea(this.game) {
     //!!!
@@ -57,8 +58,8 @@ class PlayArea extends Component {
     var xSize = cols * cellSize;
     var ySize = rows * cellSize;
 
-    var p1 = canvasSize![0];
-    var p2 = canvasSize![1];
+    var p1 = gameSize![0];
+    var p2 = gameSize![1];
     x0 = (p1 - xSize) * 0.5;
     y0 = (p2 - ySize) * 0.5;
   }
@@ -108,12 +109,14 @@ class PlayArea extends Component {
   }
 
   @override
-  void onGameResize(Vector2 canvasSize) {
-    super.onGameResize(canvasSize);
+  void onGameResize(Vector2 gameSize) {
+    super.onGameResize(gameSize);
 
-    print('onGameResize');
+    if (kDebugMode) {
+      print('onGameResize');
+    }
 
-    this.canvasSize = canvasSize;
+    this.gameSize = gameSize;
 
     if (map.isEmpty) {
       readMap(testData1);
