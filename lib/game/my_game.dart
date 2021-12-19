@@ -4,6 +4,7 @@ import 'package:flame/input.dart';
 import 'package:flame_forge2d/forge2d_game.dart';
 import 'package:motos/components/background.dart';
 import 'package:motos/components/play_area.dart';
+import 'package:motos/game/game_init.dart';
 
 import '../components/hero.dart';
 
@@ -17,20 +18,22 @@ class MyGame extends Forge2DGame with TapDetector {
   late Background background;
   late Hero hero;
 
+  late Vector2 viewportSize;
+
   MyGame(
     double width,
     double height, {
     this.hide,
   }) : super(gravity: Vector2(0, -10.0), zoom: 1) {
     hide ??= false;
-    final viewportSize = Vector2(width, height);
-
-    initialize();
+    viewportSize = Vector2(width, height);
   }
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    GameInit(this).init(viewportSize);
 
     background = Background(this);
     add(background);
@@ -49,13 +52,6 @@ class MyGame extends Forge2DGame with TapDetector {
     }
 
     super.render(canvas);
-  }
-
-  Future<void> initialize() async {
-    onGameResize(Vector2.zero());
-
-    //!!!
-    //AudioTool.play(BGMType.home);
   }
 
   @override
@@ -78,5 +74,10 @@ class MyGame extends Forge2DGame with TapDetector {
       print('pos2');
     }
     */
+  }
+
+  @override
+  void onDetach() {
+    super.onDetach();
   }
 }

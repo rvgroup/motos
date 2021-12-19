@@ -40,7 +40,8 @@ class HomePage extends StatelessWidget {
                 lExpanded(
                   child: _bottomAction(),
                 ),
-                _hideGame(),
+                //!!!
+                //_hideGame(),
               ],
             ),
           ),

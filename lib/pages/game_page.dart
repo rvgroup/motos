@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:motos/game/game_init.dart';
 
 import '../game/my_game.dart';
 import '../tools/sensor_tool.dart';
@@ -24,6 +25,8 @@ class _GamePageState extends State<GamePage> {
   @override
   void dispose() {
     SensorTool.stop();
+    GameInit.dispose();
+
     super.dispose();
   }
 

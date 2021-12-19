@@ -5,7 +5,6 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_forge2d/position_body_component.dart';
 import 'package:flutter/foundation.dart';
-import 'package:forge2d/src/dynamics/body.dart';
 import 'package:sensors/sensors.dart';
 
 class Hero extends PositionBodyComponent {
